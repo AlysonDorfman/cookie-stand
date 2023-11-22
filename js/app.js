@@ -132,3 +132,174 @@ let tokyo = {
   },
 };
 tokyo.render();
+
+
+let dubai = {
+  name: 'Dubai',
+  minCustomer: 11,
+  maxCustomer: 38,
+  avgCookieSale: 3.7,
+  customerNumber: 0, // will hold a random number of customers between min and max when method below is called
+  randomNumCustomer: function (min, max) {
+    return Math.floor(Math.random() * (max - min +1) + min);
+  },
+  getNum: function () {
+    this.customerNumber = this.randomNumCustomer (this.minCustomer,this.maxCustomer);
+    return this.customerNumber;
+  },
+
+  cookiePurchase: [],
+  totalCookies: 0,
+
+  render: function () {
+    // this.getNum();
+    for (let i=0; i < hours.length; i++) {
+      let cookiesBought = Math.ceil(this.avgCookieSale * this.getNum());
+      console.log(cookiesBought);
+      this.totalCookies += cookiesBought;
+      //this.totalCookies = this.totalCookies + cookiesBought
+      //in other words, adding cookiesBought to the total for every iteration
+      this.cookiePurchase.push(cookiesBought);
+
+      console.log(this.cookiePurchase);
+      console.log('TotalSales:', this.totalCookies);
+    }
+
+    //DOM MANIPULATION
+    // let storeSection = document.getElementById('stores');
+
+    let storeHeading = document.createElement('h2');
+    storeHeading.innerText = this.name;
+    storeSection.appendChild(storeHeading);
+
+    let storeList = document.createElement('ul');
+    storeSection.appendChild(storeList);
+    console.log(storeList);
+    
+    for (let i = 0; i < this.cookiePurchase.length; i++) {
+      let cookieItem = document.createElement('li');
+      cookieItem.textContent = `${hours[i]}: ${this.cookiePurchase[i]} cookies`;
+      storeList.appendChild(cookieItem);
+      console.log(cookieItem);
+    }
+    let cookieTotal = document.createElement('li');
+    cookieTotal.textContent = `Total Sales: ${this.totalCookies}`;
+    storeList.appendChild(cookieTotal);
+
+  },
+};
+dubai.render();
+
+
+let paris = {
+  name: 'Paris',
+  minCustomer: 20,
+  maxCustomer: 38,
+  avgCookieSale: 2.3,
+  customerNumber: 0, // will hold a random number of customers between min and max when method below is called
+  randomNumCustomer: function (min, max) {
+    return Math.floor(Math.random() * (max - min +1) + min);
+  },
+  getNum: function () {
+    this.customerNumber = this.randomNumCustomer (this.minCustomer,this.maxCustomer);
+    return this.customerNumber;
+  },
+
+  cookiePurchase: [],
+  totalCookies: 0,
+
+  render: function () {
+    // this.getNum();
+    for (let i=0; i < hours.length; i++) {
+      let cookiesBought = Math.ceil(this.avgCookieSale * this.getNum());
+      console.log(cookiesBought);
+      this.totalCookies += cookiesBought;
+      //this.totalCookies = this.totalCookies + cookiesBought
+      //in other words, adding cookiesBought to the total for every iteration
+      this.cookiePurchase.push(cookiesBought);
+
+      console.log(this.cookiePurchase);
+      console.log('TotalSales:', this.totalCookies);
+    }
+
+    //DOM MANIPULATION
+    // let storeSection = document.getElementById('stores');
+
+    let storeHeading = document.createElement('h2');
+    storeHeading.innerText = this.name;
+    storeSection.appendChild(storeHeading);
+
+    let storeList = document.createElement('ul');
+    storeSection.appendChild(storeList);
+    console.log(storeList);
+    
+    for (let i = 0; i < this.cookiePurchase.length; i++) {
+      let cookieItem = document.createElement('li');
+      cookieItem.textContent = `${hours[i]}: ${this.cookiePurchase[i]} cookies`;
+      storeList.appendChild(cookieItem);
+      console.log(cookieItem);
+    }
+    let cookieTotal = document.createElement('li');
+    cookieTotal.textContent = `Total Sales: ${this.totalCookies}`;
+    storeList.appendChild(cookieTotal);
+
+  },
+};
+paris.render();
+
+
+let lima = {
+  name: 'Lima',
+  minCustomer: 2,
+  maxCustomer: 16,
+  avgCookieSale: 14.6,
+  customerNumber: 0, // will hold a random number of customers between min and max when method below is called
+  randomNumCustomer: function (min, max) {
+    return Math.floor(Math.random() * (max - min +1) + min);
+  },
+  getNum: function () {
+    this.customerNumber = this.randomNumCustomer (this.minCustomer,this.maxCustomer);
+    return this.customerNumber;
+  },
+
+  cookiePurchase: [],
+  totalCookies: 0,
+
+  render: function () {
+    // this.getNum();
+    for (let i=0; i < hours.length; i++) {
+      let cookiesBought = Math.ceil(this.avgCookieSale * this.getNum());
+      console.log(cookiesBought);
+      this.totalCookies += cookiesBought;
+      //this.totalCookies = this.totalCookies + cookiesBought
+      //in other words, adding cookiesBought to the total for every iteration
+      this.cookiePurchase.push(cookiesBought);
+
+      console.log(this.cookiePurchase);
+      console.log('TotalSales:', this.totalCookies);
+    }
+
+    //DOM MANIPULATION
+    // let storeSection = document.getElementById('stores');
+
+    let storeHeading = document.createElement('h2');
+    storeHeading.innerText = this.name;
+    storeSection.appendChild(storeHeading);
+
+    let storeList = document.createElement('ul');
+    storeSection.appendChild(storeList);
+    console.log(storeList);
+    
+    for (let i = 0; i < this.cookiePurchase.length; i++) {
+      let cookieItem = document.createElement('li');
+      cookieItem.textContent = `${hours[i]}: ${this.cookiePurchase[i]} cookies`;
+      storeList.appendChild(cookieItem);
+      console.log(cookieItem);
+    }
+    let cookieTotal = document.createElement('li');
+    cookieTotal.textContent = `Total Sales: ${this.totalCookies}`;
+    storeList.appendChild(cookieTotal);
+
+  },
+};
+lima.render();
