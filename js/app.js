@@ -2,47 +2,36 @@
 
 // *** GLOBAL VARIABLES *** //
 const storesWholeObjectArray = [];
-
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm',];
-
-// *** GRAB WINDOW INTO THE DOM *** //
-let storeSectionIntoHtml = document.getElementById('stores');
-
+let storesSection = document.getElementById('stores'); // *** GRAB WINDOW INTO THE DOM *** //
 let table = document.createElement('table');
-storeSectionIntoHtml.appendChild(table);
-
-// *** HELPER FUNCTIONS / UTILITIES *** //
-
-function renderAll() {
-  for (let i = 0; i < storesWholeObjectArray.length; i++) {
-    storesWholeObjectArray[i].render();
-  }
-}
+storesSection.appendChild(table);
 
 // *** CONSTUCTOR FUNCTION *** //
 
-function Stores(name, minCustomer, maxCustomer, avgCookieSale) {
+function Store(name, minCustomer, maxCustomer, avgCookieSale) {
   this.name = name;
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
   this.avgCookieSale = avgCookieSale;
   this.customerNumber = 0;
-  this.cookiePurchase = [];
-  this.totalCookies = 0;
+  this.cookiePurchasePerHourArray = [];
+  this.totalCookiesWholeDay = 0;
+  storesWholeObjectArray.push(this);
 }
 
 // *** PROTOTYPE METHODS *** //
 
-Stores.prototype.randomNumCustomer = function (min, max) {
+Store.prototype.randomNumCustomer = function(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-Stores.prototype.getNum = function () {
+Store.prototype.getNum = function() {
   this.customerNumber = this.randomNumCustomer(this.minCustomer, this.maxCustomer);
   return this.customerNumber;
 };
 
-Stores.prototype.render = function () {
+Store.prototype.render = function() {
 
   let storeRow = document.createElement('tr');
   table.appendChild(storeRow);
@@ -53,29 +42,21 @@ Stores.prototype.render = function () {
 
   for (let i = 0; i < hours.length; i++) {
     let cookiesBought = Math.ceil(this.avgCookieSale * this.getNum());
-    // console.log(cookiesBought);
-    this.totalCookies += cookiesBought;
-    this.cookiePurchase.push(cookiesBought);
-
-    // console.log(this.cookiePurchase);
-    // console.log('TotalSales:', this.totalCookies);
+    this.totalCookiesWholeDay += cookiesBought;
+    this.cookiePurchasePerHourArray.push(cookiesBought);
   }
 
   for (let i = 0; i < hours.length; i++) {
     let cookieItem = document.createElement('td');
-    cookieItem.textContent = this.cookiePurchase[i];
+    cookieItem.textContent = this.cookiePurchasePerHourArray[i];
     storeRow.appendChild(cookieItem);
-    // console.log(cookieItem);
   }
   let cookieTotal = document.createElement('th');
-  cookieTotal.textContent = this.totalCookies;
+  cookieTotal.textContent = this.totalCookiesWholeDay;
   storeRow.appendChild(cookieTotal);
 };
 
-// *** TABLE DEMO *** //
-
-
-// First Row: Locations, Hours Loop, Daily Total
+// *** NON-PROTOTYPE FUNCTIONS *** //
 
 function header() {
   let rowHeading = document.createElement('tr');
@@ -110,32 +91,35 @@ function footer() {
     let allSalesThisHour = 0;
 
     for (let j = 0; j < storesWholeObjectArray.length; j++) {
-      allSalesThisHour += storesWholeObjectArray[j].cookiePurchase[i];
+      allSalesThisHour += storesWholeObjectArray[j].cookiePurchasePerHourArray[i];
     }
-
     let hoursTotal = document.createElement('th');
     hoursTotal.textContent = allSalesThisHour;
     rowValues6.appendChild(hoursTotal);
-
     allStoresGrandTotal += allSalesThisHour;
-    console.log(allStoresGrandTotal);
   }
-
   let grandTotalCell = document.createElement('th');
   grandTotalCell.textContent = allStoresGrandTotal;
   rowValues6.appendChild(grandTotalCell);
-
 }
 
-// *** EXECUTABLE CODE *** //
+// *** HELPER FUNCTIONS / UTILITIES *** //
 
-let seattle = new Stores('Seattle', 23, 65, 6.3);
-let tokyo = new Stores('Tokyo', 3, 24, 1.2);
-let dubai = new Stores('Dubai', 11, 38, 3.7);
-let paris = new Stores('Paris', 20, 38, 2.3);
-let lima = new Stores('Lima', 2, 16, 14.6);
+function renderAll() {
+  for (let i = 0; i < storesWholeObjectArray.length; i++) {
+    storesWholeObjectArray[i].render();
+  }
+}
 
-storesWholeObjectArray.push(seattle, tokyo, dubai, paris, lima);
+// *** CONSTRUCT THE STORES *** //
+
+new Store('Seattle', 23, 65, 6.3);
+new Store('Tokyo', 3, 24, 1.2);
+new Store('Dubai', 11, 38, 3.7);
+new Store('Paris', 20, 38, 2.3);
+new Store('Lima', 2, 16, 14.6);
+
+// if I want to grab 23 (minCustomer) out of the object that I think of as Seattle: you'd refer to it as storesWholeObjectArray[0].minCustomer //
 
 header();
 renderAll();
