@@ -35,6 +35,8 @@ homeStore.prototype.renderHomePage = function() {
   } else {
     console.error("Store name is undefined or null.");
   }
+  let storeInfo = document.createElement('ul');
+  homePageSection.appendChild(storeInfo);
 };
 
 function renderAllHomePage() {
