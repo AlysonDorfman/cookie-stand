@@ -37,6 +37,18 @@ homeStore.prototype.renderHomePage = function() {
   }
   let storeInfo = document.createElement('ul');
   homePageSection.appendChild(storeInfo);
+  let storeListItem = document.createElement('li');
+  storeInfo.appendChild(storeListItem);
+  storeListItem.innerText = this.address;
+
+  let storeListItem2 = document.createElement('li');
+  storeInfo.appendChild(storeListItem2);
+  storeListItem2.innerText = this.openHours;
+
+  let storeListItem3 = document.createElement('li');
+  storeInfo.appendChild(storeListItem3);
+  storeListItem3.innerText = this.contactInfo;
+
 };
 
 function renderAllHomePage() {
