@@ -7,9 +7,13 @@ let storesSection = document.getElementById('stores'); // *** GRAB WINDOW INTO T
 let table = document.createElement('table');
 storesSection.appendChild(table);
 
+// let homePageSection = document.getElementById('homepage');
+// let homePageElem = document.createElement('section');
+// homePageSection.appendChild(homePageElem);
+
 // *** CONSTUCTOR FUNCTION *** //
 
-function Store(name, minCustomer, maxCustomer, avgCookieSale) {
+function Store(name, minCustomer, maxCustomer, avgCookieSale, address, openHours, contactInfo) {
   this.name = name;
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
@@ -17,6 +21,9 @@ function Store(name, minCustomer, maxCustomer, avgCookieSale) {
   this.customerNumber = 0;
   this.cookiePurchasePerHourArray = [];
   this.totalCookiesWholeDay = 0;
+  this.address = address;
+  this.openHours = openHours;
+  this.contactInfo = contactInfo;
   storesWholeObjectArray.push(this);
 }
 
@@ -55,6 +62,17 @@ Store.prototype.render = function() {
   cookieTotal.textContent = this.totalCookiesWholeDay;
   storeRow.appendChild(cookieTotal);
 };
+
+// Store.prototype.renderHomePage = function() {
+//   let storeName = document.createElement('h2');
+//   console.log(this.name);
+//   storeName.innerText = this.name;
+//   homePageSection.appendChild(storeName);
+// };
+
+
+
+
 
 // *** NON-PROTOTYPE FUNCTIONS *** //
 
@@ -111,16 +129,19 @@ function renderAll() {
   }
 }
 
+
 // *** CONSTRUCT THE STORES *** //
 
-new Store('Seattle', 23, 65, 6.3);
-new Store('Tokyo', 3, 24, 1.2);
-new Store('Dubai', 11, 38, 3.7);
-new Store('Paris', 20, 38, 2.3);
-new Store('Lima', 2, 16, 14.6);
+new Store('Seattle', 23, 65, 6.3, '708 Ravenna Dr., Seaatle, WA 98121', '6AM-7PM', '206-232-4960');
+new Store('Tokyo', 3, 24, 1.2, '1 Chome-1-2 Oshiage, Sumida, Tokyo 131-8634', '6AM-7PM', '555-777-5555');
+new Store('Dubai', 11, 38, 3.7, '1 Sheikh Mohammed bin Rashid Blvd-Dubai', '6AM-7pm', '333-333-3333');
+new Store('Paris', 20, 38, 2.3, 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris', '6AM-7PM', '111-111-1111');
+new Store('Lima', 2, 16, 14.6, 'Ca. Gral. Borgono cuadra 8, Miraflores 15074', '6AM-7PM', '888-999-0000');
 
 // if I want to grab 23 (minCustomer) out of the object that I think of as Seattle: you'd refer to it as storesWholeObjectArray[0].minCustomer //
 
 header();
 renderAll();
 footer();
+// renderAllHomePage();
+
