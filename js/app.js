@@ -7,13 +7,17 @@ let storesSection = document.getElementById('stores'); // *** GRAB WINDOW INTO T
 let table = document.createElement('table');
 storesSection.appendChild(table);
 
+let addLocationFormVariable = document.getElementById('addStoreForm'); // *** GRAB form INTO THE DOM *** //
+let button = document.querySelector('button');
+
+
 // let homePageSection = document.getElementById('homepage');
 // let homePageElem = document.createElement('section');
 // homePageSection.appendChild(homePageElem);
 
 // *** CONSTUCTOR FUNCTION *** //
 
-function Store(name, minCustomer, maxCustomer, avgCookieSale, address, openHours, contactInfo) {
+function Store(name, minCustomer, maxCustomer, avgCookieSale) {
   this.name = name;
   this.minCustomer = minCustomer;
   this.maxCustomer = maxCustomer;
@@ -21,9 +25,6 @@ function Store(name, minCustomer, maxCustomer, avgCookieSale, address, openHours
   this.customerNumber = 0;
   this.cookiePurchasePerHourArray = [];
   this.totalCookiesWholeDay = 0;
-  this.address = address;
-  this.openHours = openHours;
-  this.contactInfo = contactInfo;
   storesWholeObjectArray.push(this);
 }
 
@@ -129,19 +130,42 @@ function renderAll() {
   }
 }
 
+// *** Event Handler *** //
+
+function newLocationForm(event) {
+  console.log('I have been clicked!!!');
+  event.preventDefault();
+  let locationName = event.target.locationInput.value;
+  let locationMin = parseFloat(event.target.minCustomerInput.value);
+  let locationMax = parseFloat(event.target.maxCustomerInput.value);
+  let locationAvg = parseFloat(event.target.avgCookieSaleInput.value);
+  let formStoreCreation = new Store(locationName, locationMin, locationMax, locationAvg);
+  console.log(formStoreCreation);
+  storesWholeObjectArray.push(formStoreCreation);
+  console.log(storesWholeObjectArray);
+}
+
 
 // *** CONSTRUCT THE STORES *** //
 
-new Store('Seattle', 23, 65, 6.3, '708 Ravenna Dr., Seaatle, WA 98121', '6AM-7PM', '206-232-4960');
-new Store('Tokyo', 3, 24, 1.2, '1 Chome-1-2 Oshiage, Sumida, Tokyo 131-8634', '6AM-7PM', '555-777-5555');
-new Store('Dubai', 11, 38, 3.7, '1 Sheikh Mohammed bin Rashid Blvd-Dubai', '6AM-7pm', '333-333-3333');
-new Store('Paris', 20, 38, 2.3, 'Champ de Mars, 5 Avenue Anatole France, 75007 Paris', '6AM-7PM', '111-111-1111');
-new Store('Lima', 2, 16, 14.6, 'Ca. Gral. Borgono cuadra 8, Miraflores 15074', '6AM-7PM', '888-999-0000');
+new Store('Seattle', 23, 65, 6.3);
+new Store('Tokyo', 3, 24, 1.2);
+new Store('Dubai', 11, 38, 3.7);
+new Store('Paris', 20, 38, 2.3);
+new Store('Lima', 2, 16, 14.6);
 
 // if I want to grab 23 (minCustomer) out of the object that I think of as Seattle: you'd refer to it as storesWholeObjectArray[0].minCustomer //
-
+addLocationFormVariable.addEventListener('submit', newLocationForm);
 header();
 renderAll();
 footer();
+button.addEventListener('submit', newLocationForm);
+
 // renderAllHomePage();
 
+// FORM PRACTICE //
+
+let buttonToBeClicked = document.getElementById('submit');
+
+//Attach eventlistener to the element
+buttonToBeClicked.addEventListener('click', newLocationForm)

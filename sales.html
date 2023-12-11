@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pat's Salmon Cookies</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
   <header>
-  <h2><a href="index.html">Home</a></h2>
+    <h2><a href="index.html">Home</a></h2>
   </header>
   <nav></nav>
   <main>
     <h2>Salmon Cookies Sales</h2>
     <section id="stores">
     </section>
+    <form id="addStoreForm">
+      <fieldset>
+        <legend>Add a New Location Here</legend>
+        <label>What is the name of the location:</label>
+        <input name="locationInput" type="text">
+        <label>What is the minimum number of customers per hour:</label>
+        <input name="minCustomerInput" type="number">
+        <label>What is the maximum number of customers per hour:</label>
+        <input name="maxCustomerInput" type="number">
+        <label>What is the average number of customers per hour:</label>
+        <input name="avgCookieSaleInput" type="number">
+        <button id="submit">Click to Submit</button>
+      </fieldset>
+    </form>
   </main>
   <footer></footer>
   <script src="./js/app.js"></script>
 </body>
+
 </html>
