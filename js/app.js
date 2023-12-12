@@ -8,8 +8,6 @@ let table = document.createElement('table');
 storesSection.appendChild(table);
 
 let addLocationFormVariable = document.getElementById('addStoreForm'); // *** GRAB form INTO THE DOM *** //
-let button = document.querySelector('button');
-
 
 // let homePageSection = document.getElementById('homepage');
 // let homePageElem = document.createElement('section');
@@ -95,9 +93,10 @@ function header() {
   rowHeading.appendChild(dailyTotalCell);
 }
 
+let rowValues6 = document.createElement('tr');
+
 function footer() {
 
-  let rowValues6 = document.createElement('tr');
   table.appendChild(rowValues6);
 
   let totalValues = document.createElement('th');
@@ -136,13 +135,19 @@ function newLocationForm(event) {
   console.log('I have been clicked!!!');
   event.preventDefault();
   let locationName = event.target.locationInput.value;
+  console.log(locationName);
   let locationMin = parseFloat(event.target.minCustomerInput.value);
   let locationMax = parseFloat(event.target.maxCustomerInput.value);
   let locationAvg = parseFloat(event.target.avgCookieSaleInput.value);
   let formStoreCreation = new Store(locationName, locationMin, locationMax, locationAvg);
   console.log(formStoreCreation);
-  storesWholeObjectArray.push(formStoreCreation);
+  formStoreCreation.render();
+  // storesWholeObjectArray.push(formStoreCreation);
   console.log(storesWholeObjectArray);
+  rowValues6.innerHTML=null;
+  console.log(rowValues6);
+  footer();
+  console.log(rowValues6);
 }
 
 
@@ -155,17 +160,18 @@ new Store('Paris', 20, 38, 2.3);
 new Store('Lima', 2, 16, 14.6);
 
 // if I want to grab 23 (minCustomer) out of the object that I think of as Seattle: you'd refer to it as storesWholeObjectArray[0].minCustomer //
-addLocationFormVariable.addEventListener('submit', newLocationForm);
+
 header();
 renderAll();
 footer();
-button.addEventListener('submit', newLocationForm);
+addLocationFormVariable.addEventListener('submit', newLocationForm);
+
 
 // renderAllHomePage();
 
 // FORM PRACTICE //
 
-let buttonToBeClicked = document.getElementById('submit');
+// let buttonToBeClicked = document.getElementById('submit');
 
-//Attach eventlistener to the element
-buttonToBeClicked.addEventListener('click', newLocationForm)
+// //Attach eventlistener to the element
+// buttonToBeClicked.addEventListener('click', newLocationForm)
