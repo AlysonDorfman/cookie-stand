@@ -1,6 +1,49 @@
-body {
-  background-color: bisque;
+*:not(#stores, h1, h2, h3, a, p) {
+  font-family: 'Georgia', serif;
+  color: darkgreen;
 }
+
+a {
+  color: black;
+  
+}
+
+p {
+  background-color: black;
+  color: white;
+  text-align: center;
+  
+}
+
+h1, h2, h3 {
+  font-family: 'righteous', serif;
+  color: salmon;
+  }
+
+h1 {
+  background-color: black;
+  text-align: center;
+  
+}
+body {
+  background-color: white;
+  color: blue;
+}
+
+#stores {
+  font-family: 'Helvetica', sans-serif;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  /* Additional styles for the image go here */
+}
+.center-container {
+  text-align: center;
+}
+
+
 
 form {
   /* Center the form on the page */
@@ -66,4 +109,50 @@ button {
   /* This extra margin represent roughly the same space as the space
      between the labels and their text fields */
   margin-left: 0.5em;
+}
+
+/////
+
+header{
+  background-color: black;
+  color: salmon;
+  /* display: flex; */
+  justify-content: center;
+}
+nav ul{
+  /* display: flex; */
+  /* flex-direction:row; */
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  background-color: salmon;
+}
+nav ul li {
+  display: inline-block; 
+  padding: 1em 0;
+  text-align: center;
+  width: 100px;
+}
+main img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 75%;
+}
+
+.LocationList {
+  margin: 3em;
+}
+table,th, td {
+  background-color: salmon;
+  border: 1px solid;
+  border-collapse: collapse ;
+  border-color: black;
+  
+}
+#cookiesForm{
+display: block;
+margin-top: 40px;
+margin-left: 40px;
+margin-right: 40px;
 }
